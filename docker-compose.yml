@@ -1,0 +1,30 @@
+version: "3.0"
+
+services:
+  python:
+    build: "."
+    container_name: "mypydevenv"
+    tty: true
+    ports: 
+     - "8080:8080"  #VNC
+     - "22000:22"   #SSH
+     - "33890:3389" #RMD
+     - "8888:8888"  #Jupyter
+    command:
+      bash -c '/usr/bin/supervisord -c /etc/supervisor/supervisord.conf'
+    volumes: 
+     - "./workdir:/root/workdir/"  
+     - "./.spyder-py3:/root/.config/spyder-py3/"
+#    networks: 
+#      app_net: 
+#        ipv4_address: 192.168.0.1
+  #  volumes: 
+  #   - "./workdir:/root/workdir/"
+  #  command: jupyter lab
+
+#networks: 
+#  app_net: 
+#    ipam: 
+#      driver: default
+#      config: 
+#       - subnet: 192.168.0.0/24
