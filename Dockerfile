@@ -39,4 +39,7 @@ EXPOSE 8888
 RUN apt install -y fonts-takao-gothic
 ADD .matplotlib ./root/.config/matplotlib/      
 
+#setting service startup
 ADD supervisord/* /etc/supervisor/conf.d/
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]

@@ -15,16 +15,3 @@ services:
     volumes: 
      - "./workdir:/root/workdir/"  
      - "./.spyder-py3:/root/.config/spyder-py3/"
-#    networks: 
-#      app_net: 
-#        ipv4_address: 192.168.0.1
-  #  volumes: 
-  #   - "./workdir:/root/workdir/"
-  #  command: jupyter lab
-
-#networks: 
-#  app_net: 
-#    ipam: 
-#      driver: default
-#      config: 
-#       - subnet: 192.168.0.0/24
