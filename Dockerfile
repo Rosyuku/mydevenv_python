@@ -26,7 +26,8 @@ EXPOSE 3389
 
 #setting anaconda3
 #ENV PATH /opt/conda/bin:$PATH
-RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh -O ~/anaconda.sh && \
+ARG conda_url
+RUN wget --quiet ${conda_url} -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
     rm ~/anaconda.sh && \
     echo "export PATH=/opt/conda/bin:$PATH" >> ~/.bashrc

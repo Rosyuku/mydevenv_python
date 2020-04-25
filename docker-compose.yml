@@ -2,7 +2,10 @@ version: "3.0"
 
 services:
   python:
-    build: "."
+    build: 
+      context: "."
+      args: 
+       - conda_url=https://repo.anaconda.com/miniconda/Miniconda3-py38_4.8.2-Linux-x86_64.sh
     container_name: "mypydevenv"
     tty: true
     ports: 
@@ -15,3 +18,4 @@ services:
     volumes: 
      - "./workdir:/root/workdir/"  
      - "./.spyder-py3:/root/.config/spyder-py3/"
+    
