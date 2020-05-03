@@ -5,18 +5,19 @@ services:
     build: 
       context: "."
       args: 
-       - conda_url=https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
-       - root_password=$root_password
-       - user_name=$user_name
-       - user_password=$user_password
+        - conda_url=https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+        - root_password=$root_password
+        - user_name=$user_name
+        - user_password=$user_password
     container_name: $container_name
     hostname: $host_name
     shm_size: $shm_size
+    tty: true
     ports: 
-      - $RDPport:3389 #RDP
-      - $SSHport:22 #SSH
-      - $Jupyterport:8888 #Jupyter
-      - $WebAPPport:8080 #web 
+      - $RDPport:3389
+      - $SSHport:22
+      - $Jupyterport:8888
+      - $WebAPPport:8080
     command:
       bash -c '/usr/bin/supervisord -c /etc/supervisor/supervisord.conf'
     volumes: 
