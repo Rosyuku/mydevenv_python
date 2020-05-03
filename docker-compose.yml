@@ -5,17 +5,20 @@ services:
     build: 
       context: "."
       args: 
-       - conda_url=https://repo.anaconda.com/miniconda/Miniconda3-py38_4.8.2-Linux-x86_64.sh
-    container_name: "mypydevenv"
-    tty: true
+       - conda_url=https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+       - root_password=$root_password
+       - user_name=$user_name
+       - user_password=$user_password
+    container_name: $container_name
+    hostname: $host_name
+    shm_size: $shm_size
     ports: 
-     - "8080:8080"  #VNC
-     - "22000:22"   #SSH
-     - "33890:3389" #RMD
-     - "8888:8888"  #Jupyter
+      - $RDPport:3389 #RDP
+      - $SSHport:22 #SSH
+      - $Jupyterport:8888 #Jupyter
+      - $WebAPPport:8080 #web 
     command:
       bash -c '/usr/bin/supervisord -c /etc/supervisor/supervisord.conf'
     volumes: 
-     - "./workdir:/root/workdir/"  
-     - "./.spyder-py3:/root/.config/spyder-py3/"
+      - ./workdir:/home/$user_name/Workdir/:rw
     
