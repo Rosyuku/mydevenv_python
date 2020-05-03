@@ -8,6 +8,7 @@ ARG user_name="my-python"
 ARG user_password="my-Password"
 RUN echo root:$root_password | chpasswd && \
     usermod -l $user_name "my-ubuntu" && \
+    mv /home/my-ubuntu /home/$user_name && \
     echo $user_name:$user_password | chpasswd
 
 #anaconda setting
@@ -15,7 +16,7 @@ ARG conda_url="https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.
 RUN wget --quiet $conda_url -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
     rm ~/anaconda.sh && \
-    echo "export PATH=/opt/conda/bin:$PATH" >> ~/.bashrc
+    echo "export PATH=/opt/conda/bin:$PATH" >> /home/$user_name/.bashrc
 
 #jupyter setting
 ADD ./config/python/.jupyter /home/$user_name/.jupyter/
