@@ -8,8 +8,6 @@ ARG user_name="my-python"
 ARG user_password="my-Password"
 RUN echo root:$root_password | chpasswd && \
     usermod -l $user_name "my-ubuntu" && \
-    mv /home/my-ubuntu /home/$user_name && \
-    echo $user_name:$user_password | chpasswd && \
     sed -i "s#my-ubuntu:#${user_name}:#" /etc/passwd
 
 #anaconda setting
