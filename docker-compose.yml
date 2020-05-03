@@ -5,7 +5,7 @@ services:
     build: 
       context: "."
       args: 
-        - conda_url=https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+        - conda_url=$conda_url
         - root_password=$root_password
         - user_name=$user_name
         - user_password=$user_password
