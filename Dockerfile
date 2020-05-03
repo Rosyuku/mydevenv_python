@@ -19,7 +19,7 @@ RUN wget --quiet $conda_url -O ~/anaconda.sh && \
 
 #jupyter setting
 ADD ./config/python/.jupyter /home/$user_name/.jupyter/
-RUN sed -i 's/c.NotebookApp.notebook_dir = define/c.NotebookApp.notebook_dir = /home/${user_name}' /home/$user_name/.jupyter/jupyter_notebook_config.py
+RUN sed -i 's/c.NotebookApp.notebook_dir = define/c.NotebookApp.notebook_dir = /home/${user_name}/' /home/$user_name/.jupyter/jupyter_notebook_config.py
 EXPOSE 8888
 
 #matplotlib setting
@@ -33,6 +33,6 @@ EXPOSE 8080
 
 #Startup setting
 ADD ./config/supervisord/* /etc/supervisor/conf.d/
-RUN sed -i 's/user=defined/user=${user_name}' /etc/supervisor/conf.d/python.conf
+RUN sed -i 's/user=defined/user=${user_name}/' /etc/supervisor/conf.d/python.conf
 
 CMD ["bash", "-c", "/usr/bin/supervisord -c /etc/supervisor/supervisord.conf"]
