@@ -12,7 +12,7 @@ RUN echo root:$root_password | chpasswd && \
 
 #anaconda setting
 ARG conda_url="https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh"
-RUN wget --quiet conda_url -O ~/anaconda.sh && \
+RUN wget --quiet $conda_url -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
     rm ~/anaconda.sh && \
     echo "export PATH=/opt/conda/bin:$PATH" >> ~/.bashrc
