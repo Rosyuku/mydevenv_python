@@ -8,7 +8,7 @@ ARG user_name="my-python"
 ARG user_password="my-Password"
 RUN echo root:$root_password | chpasswd && \
     usermod -l $user_name "my-ubuntu" && \
-    sed -i "s#my-ubuntu:#${user_name}:#" /etc/passwd
+    echo $user_name:$user_password | chpasswd
 
 #anaconda setting
 ARG conda_url="https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh"
