@@ -7,7 +7,10 @@ ARG root_password="super"
 ARG user_name="my-python"
 ARG user_password="my-Password"
 RUN echo root:$root_password | chpasswd && \
-    useradd -m -G sudo $user_name -p $(openssl passwd -1 $user_password) --shell /bin/bash
+    usermod -l $user_name "my-ubuntu" && \
+    mv /home/my-ubuntu /home/$user_name && \
+    echo $user_name:$user_password | chpasswd && \
+    sed -i "s#my-ubuntu:#${user_name}:#" /etc/passwd
 
 #anaconda setting
 ARG conda_url="https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh"
