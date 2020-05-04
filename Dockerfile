@@ -8,7 +8,10 @@ ARG user_name="my-python"
 ARG user_password="my-Password"
 RUN echo root:$root_password | chpasswd && \
     usermod -l $user_name "my-ubuntu" && \
-    echo $user_name:$user_password | chpasswd
+    mv /home/my-ubuntu /home/$user_name && \
+    chown -R $user_name:my-ubuntu /home/$user_name/* && \
+    echo $user_name:$user_password | chpasswd && \
+    sed -i "s#my-ubuntu:#${user_name}:#" /etc/passwd
 
 #anaconda setting
 ARG conda_url="https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh"
@@ -19,7 +22,7 @@ RUN wget --quiet $conda_url -O ~/anaconda.sh && \
 
 #jupyter setting
 ADD ./config/python/.jupyter /home/$user_name/.jupyter/
-RUN sed -i "s#c.NotebookApp.notebook_dir = define#c.NotebookApp.notebook_dir = /home/${user_name}#" /home/$user_name/.jupyter/jupyter_notebook_config.py
+RUN sed -i "s#c.NotebookApp.notebook_dir = define#c.NotebookApp.notebook_dir = '/home/${user_name}'#" /home/$user_name/.jupyter/jupyter_notebook_config.py
 EXPOSE 8888
 
 #matplotlib setting
