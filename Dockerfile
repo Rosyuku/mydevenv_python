@@ -9,7 +9,6 @@ ARG user_password="my-Password"
 RUN echo root:$root_password | chpasswd && \
     usermod -l $user_name "my-ubuntu" && \
     mv /home/my-ubuntu /home/$user_name && \
-    chown -R $user_name:my-ubuntu /home/$user_name/* && \
     echo $user_name:$user_password | chpasswd && \
     sed -i "s#my-ubuntu:#${user_name}:#" /etc/passwd
 
@@ -36,6 +35,7 @@ EXPOSE 8080
 
 #Startup setting
 ADD ./config/supervisord/* /etc/supervisor/conf.d/
-RUN sed -i "s#user=defined#user=${user_name}#" /etc/supervisor/conf.d/python.conf
+RUN sed -i "s#defined#${user_name}#" /etc/supervisor/conf.d/python.conf && \
+    chown -R $user_name:my-ubuntu /home/$user_name
 
 CMD ["bash", "-c", "/usr/bin/supervisord -c /etc/supervisor/supervisord.conf"]
