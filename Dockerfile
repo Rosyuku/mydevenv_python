@@ -33,6 +33,10 @@ ADD ./config/python/.spyder-py3/langconfig /home/$user_name/.config/spyder-py3/l
 #web applicaion server setting
 EXPOSE 8080
 
+#pyode setting
+RUN apt-get update -y && apt-get install -y libglu1-mesa-dev freeglut3-dev mesa-common-dev && \
+    /opt/conda/bin/pip install Py3ODE pygame PyOpenGL PyOpenGL_accelerate vpython
+
 #Startup setting
 ADD ./config/supervisord/* /etc/supervisor/conf.d/
 RUN sed -i "s#defined#${user_name}#" /etc/supervisor/conf.d/python.conf && \
