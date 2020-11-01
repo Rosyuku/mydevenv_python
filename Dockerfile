@@ -34,8 +34,9 @@ ADD ./config/python/.spyder-py3/langconfig /home/$user_name/.config/spyder-py3/l
 EXPOSE 8080
 
 #pyode setting
+ADD ./config/python/requirements-pyode.txt /home/$user_name/.config/requirements-pyode.txt
 RUN apt-get update -y && apt-get install -y libglu1-mesa-dev freeglut3-dev mesa-common-dev && \
-    /opt/conda/bin/pip install Py3ODE pygame PyOpenGL PyOpenGL_accelerate vpython
+    /opt/conda/bin/pip install -r /home/$user_name/.config/requirements-pyode.txt
 
 #Startup setting
 ADD ./config/supervisord/* /etc/supervisor/conf.d/

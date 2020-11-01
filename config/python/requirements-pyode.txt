@@ -1,0 +1,5 @@
+Py3ODE >= 1.2.0.dev15
+pygame >= 2.0.0
+PyOpenGL >= 3.1.5
+PyOpenGL_accelerate >= 3.1.5
+vpython >= 7.6.1
