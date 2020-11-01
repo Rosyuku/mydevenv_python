@@ -34,9 +34,9 @@ ADD ./config/python/.spyder-py3/langconfig /home/$user_name/.config/spyder-py3/l
 EXPOSE 8080
 
 #pyode setting
+ENV PATH $PATH:/opt/conda/bin
 ADD ./config/python/requirements-pyode.txt /home/$user_name/.config/requirements-pyode.txt
 RUN apt-get update -y && apt-get install -y libglu1-mesa-dev freeglut3-dev mesa-common-dev && \
-    echo "export PATH=/opt/conda/bin:$PATH" && \
     /opt/conda/bin/pip install -r /home/$user_name/.config/requirements-pyode.txt
 
 #Startup setting
