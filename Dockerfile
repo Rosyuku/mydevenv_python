@@ -36,6 +36,7 @@ EXPOSE 8080
 #pyode setting
 ADD ./config/python/requirements-pyode.txt /home/$user_name/.config/requirements-pyode.txt
 RUN apt-get update -y && apt-get install -y libglu1-mesa-dev freeglut3-dev mesa-common-dev && \
+    echo "export PATH=/opt/conda/bin:$PATH" && \
     /opt/conda/bin/pip install -r /home/$user_name/.config/requirements-pyode.txt
 
 #Startup setting
