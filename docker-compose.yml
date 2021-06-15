@@ -5,7 +5,7 @@ services:
     build: 
       context: "."
       args: 
-        - conda_url=$conda_url
+        - python_version=$python_version
         - root_password=$root_password
         - user_name=$user_name
         - user_password=$user_password

@@ -12,12 +12,14 @@ RUN echo root:$root_password | chpasswd && \
     echo $user_name:$user_password | chpasswd && \
     sed -i "s#my-ubuntu:#${user_name}:#" /etc/passwd
 
-#anaconda setting
-ARG conda_url="https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh"
-RUN wget --quiet $conda_url -O ~/anaconda.sh && \
-    /bin/bash ~/anaconda.sh -b -p /opt/conda && \
-    rm ~/anaconda.sh && \
-    echo "export PATH=/opt/conda/bin:$PATH" >> /home/$user_name/.bashrc
+#python setting
+ARG python_version="3.7.6"
+RUN apt update -y && \
+    apt install -y python${python_version} python${python_version}-venv \
+    libpython${python_version}-dev python3-pip python3-dev && \
+    echo "export PATH=/opt/python/bin:$PATH" >> /home/$user_name/.bashrc
+ADD ./config/python/requirements.txt /root/requirements.txt
+RUN  /opt/python/bin/python -m pip install -r /root/requirements.txt
 
 #jupyter setting
 ADD ./config/python/.jupyter /home/$user_name/.jupyter/
