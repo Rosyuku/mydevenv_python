@@ -17,7 +17,7 @@ ARG python_version="3.7"
 RUN apt update -y && \
     apt install -y python${python_version} python${python_version}-venv \
     libpython${python_version}-dev python3-pip python3-dev \ 
-    libgmp3-dev libmpfr3-dev && \
+    libgmp3-dev libmpfr-dev && \
     python${python_version} -m venv /opt/python --copies && \
     echo "export PATH=/opt/python/bin:$PATH" >> /home/$user_name/.bashrc
 ADD ./config/python/requirements.txt /root/requirements.txt
