@@ -20,7 +20,7 @@ RUN apt update -y && \
     python${python_version} -m venv /opt/python --copies && \
     echo "export PATH=/opt/python/bin:$PATH" >> /home/$user_name/.bashrc
 ADD ./config/python/requirements.txt /root/requirements.txt
-RUN  /opt/python/bin/python -m pip install -r --no-deps /root/requirements.txt
+RUN  /opt/python/bin/python -m pip install --no-deps -r /root/requirements.txt
 
 #jupyter setting
 ADD ./config/python/.jupyter /home/$user_name/.jupyter/
