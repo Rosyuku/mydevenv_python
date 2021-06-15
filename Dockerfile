@@ -1,6 +1,6 @@
 FROM rosyuku/ubuntu-rdp:0.1.1
 LABEL maintainer="KW_Rosyuku (https://twitter.com/KW_Rosyuku)"
-LABEL version="0.2.0_no-conda"
+LABEL version="0.2.1_no-conda"
 
 #user setting
 ARG root_password="super"
@@ -13,7 +13,7 @@ RUN echo root:$root_password | chpasswd && \
     sed -i "s#my-ubuntu:#${user_name}:#" /etc/passwd
 
 #python setting
-ARG python_version="3.7.6"
+ARG python_version="3.7"
 RUN apt update -y && \
     apt install -y python${python_version} python${python_version}-venv \
     libpython${python_version}-dev python3-pip python3-dev && \
