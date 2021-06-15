@@ -1,6 +1,6 @@
 FROM rosyuku/ubuntu-rdp:0.1.1
 LABEL maintainer="KW_Rosyuku (https://twitter.com/KW_Rosyuku)"
-LABEL version="0.2.0"
+LABEL version="0.2.0_no-conda"
 
 #user setting
 ARG root_password="super"
