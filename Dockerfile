@@ -19,7 +19,7 @@ RUN apt update -y && \
     libpython${python_version}-dev python3-pip python3-dev && \
     echo "export PATH=/opt/python/bin:$PATH" >> /home/$user_name/.bashrc
 ADD ./config/python/requirements.txt /root/requirements.txt
-RUN  /opt/python/bin/python -m pip install -r /root/requirements.txt
+RUN  /opt/python/bin/python${python_version} -m pip install -r /root/requirements.txt
 
 #jupyter setting
 ADD ./config/python/.jupyter /home/$user_name/.jupyter/
