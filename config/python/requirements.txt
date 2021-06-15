@@ -24,7 +24,6 @@ cffi==1.14.0
 chardet==3.0.4
 Click==7.0
 cloudpickle==1.3.0
-clyent==1.2.2
 colorama==0.4.3
 contextlib2==0.6.0.post1
 cryptography==2.8
@@ -89,9 +88,6 @@ MarkupSafe==1.1.1
 matplotlib==3.1.3
 mccabe==0.6.1
 mistune==0.8.4
-mkl-fft==1.0.15
-mkl-random==1.1.0
-mkl-service==2.3.0
 mock==4.0.1
 more-itertools==8.2.0
 mpmath==1.1.0
