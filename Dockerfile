@@ -17,9 +17,10 @@ ARG python_version="3.7"
 RUN apt update -y && \
     apt install -y python${python_version} python${python_version}-venv \
     libpython${python_version}-dev python3-pip python3-dev && \
+    python${python_version} -m venv /opt/python --copies && \
     echo "export PATH=/opt/python/bin:$PATH" >> /home/$user_name/.bashrc
 ADD ./config/python/requirements.txt /root/requirements.txt
-RUN  /opt/python/bin/python${python_version} -m pip install -r /root/requirements.txt
+RUN  /opt/python/bin/python -m pip install -r /root/requirements.txt
 
 #jupyter setting
 ADD ./config/python/.jupyter /home/$user_name/.jupyter/
