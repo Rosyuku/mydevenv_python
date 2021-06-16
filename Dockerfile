@@ -19,6 +19,7 @@ RUN apt update -y && \
     libpython${python_version}-dev python3-pip python3-dev python3-wheel\ 
     libgmp3-dev libmpfr-dev libmpc-dev && \
     python${python_version} -m venv /opt/python --copies && \
+    /opt/python/bin/python -m pip install -U pip setuptools wheel && \
     echo "export PATH=/opt/python/bin:$PATH" >> /home/$user_name/.bashrc
 ADD ./config/python/requirements.txt /root/requirements.txt
 RUN  /opt/python/bin/python -m pip install -r /root/requirements.txt
